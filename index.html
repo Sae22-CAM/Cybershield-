@@ -1,0 +1,488 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d18">
+<title>CyberShield AI | Smart Cyber Protection</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #080d18;
+  color: #eaf2ff;
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 7%;
+  border-bottom: 1px solid #1b2940;
+  background: #0b1220;
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: bold;
+  color: #42c9ff;
+}
+
+.logo span {
+  color: white;
+}
+
+.status {
+  color: #41e6a0;
+  font-size: 12px;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 35px auto;
+}
+
+.hero {
+  margin-bottom: 35px;
+}
+
+.hero h1 {
+  font-size: clamp(28px, 5vw, 42px);
+  margin-bottom: 12px;
+}
+
+.hero h1 span {
+  color: #42c9ff;
+}
+
+.hero p {
+  color: #91a2bb;
+  line-height: 1.6;
+}
+
+.section-title {
+  margin: 30px 0 17px;
+  font-size: 21px;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.stat, .scanner, .history {
+  background: #101a2c;
+  border: 1px solid #20324d;
+  border-radius: 13px;
+  padding: 22px;
+}
+
+.stat h3 {
+  color: #91a2bb;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.stat p {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.scanners {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.scanner h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.scanner .description {
+  color: #91a2bb;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+textarea, input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  background: #080f1e;
+  border: 1px solid #293d5a;
+  color: white;
+  font-size: 14px;
+  outline: none;
+  margin-bottom: 14px;
+}
+
+textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+textarea:focus, input:focus {
+  border-color: #42c9ff;
+}
+
+button {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  background: #168fc2;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #20b5e8;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.result {
+  display: none;
+  margin-top: 18px;
+  padding: 15px;
+  background: #0b1424;
+  border-radius: 9px;
+  border: 1px solid #293d5a;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.result h3 {
+  margin-bottom: 8px;
+}
+
+.result p {
+  font-size: 13px;
+  color: #bdcce0;
+  margin-top: 5px;
+}
+
+.safe { color: #41e6a0; }
+.warning { color: #ffbd59; }
+.danger { color: #ff626f; }
+
+.history {
+  margin-top: 25px;
+}
+
+.history p {
+  color: #91a2bb;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.notice {
+  color: #91a2bb;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 14px;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  border-top: 1px solid #1b2940;
+  color: #7588a3;
+  font-size: 12px;
+  margin-top: 50px;
+}
+
+@media(max-width: 750px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .scanners {
+    grid-template-columns: 1fr;
+  }
+
+  header {
+    padding: 18px 5%;
+  }
+
+  .container {
+    width: 92%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🛡 Cyber<span>Shield AI</span></div>
+  <div class="status">● PROTOTYPE ACTIVE</div>
+</header>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Your Digital <span>Shield.</span></h1>
+    <p>
+      Intelligent cybersecurity protection.
+      Detect suspicious messages, examine phone numbers
+      and understand potential cyber threats.
+    </p>
+  </section>
+
+  <h2 class="section-title">Security Dashboard</h2>
+
+  <section class="dashboard">
+    <div class="stat">
+      <h3>Message Scans</h3>
+      <p id="messageCount">0</p>
+    </div>
+
+    <div class="stat">
+      <h3>Number Checks</h3>
+      <p id="callCount">0</p>
+    </div>
+
+    <div class="stat">
+      <h3>Threats Detected</h3>
+      <p id="threatCount">0</p>
+    </div>
+  </section>
+
+  <h2 class="section-title">Instant Protection</h2>
+
+  <section class="scanners">
+
+    <!-- MESSAGE SCANNER -->
+
+    <div class="scanner">
+      <h2>💬 Message Scanner</h2>
+
+      <p class="description">
+        Analyse suspicious SMS messages, links and
+        possible phishing attempts.
+      </p>
+
+      <textarea
+        id="message"
+        placeholder="Paste a suspicious message here..."
+      ></textarea>
+
+      <button id="messageButton" onclick="scanMessage()">
+        Scan Message
+      </button>
+
+      <div class="result" id="messageResult" aria-live="polite"></div>
+    </div>
+
+    <!-- CALL SCANNER -->
+
+    <div class="scanner">
+      <h2>📞 Call Scanner</h2>
+
+      <p class="description">
+        Enter a phone number to examine its format.
+        Reputation checking will be connected to a
+        verified reporting database later.
+      </p>
+
+      <input
+        type="tel"
+        id="phone"
+        placeholder="Enter phone number with country code"
+      >
+
+      <button id="callButton" onclick="scanCall()">
+        Analyse Number
+      </button>
+
+      <div class="result" id="callResult" aria-live="polite"></div>
+
+      <p class="notice">
+        This prototype does not identify a caller's
+        real-time location or verify whether a number
+        belongs to a scammer.
+      </p>
+    </div>
+
+  </section>
+
+  <section class="history">
+    <h2>Recent Activity</h2>
+    <div id="historyList">
+      <p>No scans performed yet.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  CyberShield AI © 2026 | Smart Digital Protection
+  <br><br>
+  Prototype version 1.0
+</footer>
+
+<script>
+
+let messageScans = 0;
+let callScans = 0;
+let threats = 0;
+
+const historyList = document.getElementById("historyList");
+
+function updateDashboard() {
+  document.getElementById("messageCount").textContent = messageScans;
+  document.getElementById("callCount").textContent = callScans;
+  document.getElementById("threatCount").textContent = threats;
+}
+
+function addHistory(text) {
+  if (historyList.textContent.includes("No scans performed yet")) {
+    historyList.innerHTML = "";
+  }
+
+  const item = document.createElement("p");
+  item.textContent = "• " + text;
+  historyList.prepend(item);
+}
+
+function showResult(element, title, details, className) {
+  element.style.display = "block";
+
+  const heading = document.createElement("h3");
+  heading.className = className;
+  heading.textContent = title;
+
+  const paragraph = document.createElement("p");
+  paragraph.textContent = details;
+
+  element.replaceChildren(heading, paragraph);
+}
+
+// MESSAGE SCANNER
+
+function scanMessage() {
+  const message = document.getElementById("message").value.trim();
+  const result = document.getElementById("messageResult");
+
+  if (!message) {
+    showResult(result, "Enter a message first", 
+      "Paste the message you want to analyse.", "warning");
+    return;
+  }
+
+  messageScans++;
+
+  const text = message.toLowerCase();
+
+  const suspiciousPatterns = [
+    /urgent|immediately|act now|within \d+ minutes/,
+    /otp|one.time password|verification code/,
+    /send money|transfer money|payment required/,
+    /bank account|account suspended|account blocked/,
+    /prize|lottery|won a reward|claim your reward/,
+    /password|login details|verify your account/,
+    /remote access|install this app/
+  ];
+
+  const suspiciousLinks = /https?:\/\/|www\./i;
+
+  let reasons = [];
+
+  suspiciousPatterns.forEach((pattern) => {
+    if (pattern.test(text)) {
+      reasons.push("Suspicious language or request detected.");
+    }
+  });
+
+  if (suspiciousLinks.test(message)) {
+    reasons.push("A link was found. Verify its destination before opening.");
+  }
+
+  const uniqueReasons = [...new Set(reasons)];
+
+  if (uniqueReasons.length > 0) {
+    threats++;
+
+    showResult(
+      result,
+      "⚠ Potentially Suspicious",
+      "Warning signs found: " + uniqueReasons.join(" ") +
+      " Do not share OTPs, passwords or payment details. This is a rule-based preliminary check, not a confirmed scam verdict.",
+      "danger"
+    );
+
+    addHistory("Message scan: Warning signs detected.");
+  } else {
+    showResult(
+      result,
+      "No Listed Warning Patterns Found",
+      "This message did not match our current detection rules. That does not prove it is safe.",
+      "safe"
+    );
+
+    addHistory("Message scan: No listed warning patterns.");
+  }
+
+  updateDashboard();
+}
+
+// CALL NUMBER SCANNER
+
+function scanCall() {
+  const phone = document.getElementById("phone").value.trim();
+  const result = document.getElementById("callResult");
+
+  const digits = phone.replace(/\D/g, "");
+
+  if (!phone || digits.length < 7 || digits.length > 15) {
+    showResult(
+      result,
+      "Invalid Number",
+      "Enter a phone number containing 7 to 15 digits.",
+      "warning"
+    );
+    return;
+  }
+
+  callScans++;
+
+  showResult(
+    result,
+    "Number Format Analysed",
+    "The entered number contains " + digits.length +
+    " digits. No verified reputation database is connected yet, so its scam status cannot currently be determined.",
+    "warning"
+  );
+
+  addHistory("Phone number checked: Reputation unavailable.");
+
+  updateDashboard();
+}
+
+updateDashboard();
+
+</script>
+
+</body>
+  </html>
+  
